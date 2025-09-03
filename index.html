@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Data Lembaga Pelatihan Kerja</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Data Lembaga Pelatihan Kerja</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #34495e;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #2980b9;
+      color: white;
+      padding: 10px;
+    }
+    td {
+      padding: 8px;
+      text-align: center;
+    }
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Portal Data LPK</h1>
-  <p>Selamat datang di website data LPK.</p>
+
+  <header>
+    <h1>Portal Data Lembaga Pelatihan Kerja</h1>
+    <p>Dinas Ketenagakerjaan & ESDM Provinsi Bali</p>
+  </header>
+
+  <nav>
+    <a href="#">Beranda</a>
+    <a href="#data">Data LPK</a>
+    <a href="#form">Formulir</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <main>
+    <h2 id="data">📊 Data Lembaga Pelatihan Kerja</h2>
+    <p>Berikut daftar LPK terdaftar:</p>
+
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Nama LPK</th>
+        <th>Nomor Izin</th>
+        <th>Bidang Pelatihan</th>
+        <th>Status Akreditasi</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LPK Marcopolo Bali International</td>
+        <td>123/2025</td>
+        <td>Pariwisata</td>
+        <td>A</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>LPK Venus One Tourism Academy</td>
+        <td>456/2025</td>
+        <td>Perhotelan</td>
+        <td>B</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>LPK Cendekia Bali</td>
+        <td>789/2025</td>
+        <td>TIK</td>
+        <td>Proses</td>
+      </tr>
+    </table>
+
+    <h2 id="form">📝 Formulir Pengisian Data</h2>
+    <p>Untuk melengkapi data LPK, silakan isi formulir di bawah ini:</p>
+    <p><a href="https://forms.gle/" target="_blank">👉 Klik di sini untuk mengisi Google Form</a></p>
+
+    <h2 id="kontak">📌 Kontak</h2>
+    <p>Email: disnaker@bali.go.id</p>
+    <p>Telepon: (0361) 123456</p>
+    <p>Alamat: Jl. Raya Denpasar, Bali</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Portal Data Lembaga Pelatihan Kerja Provinsi Bali</p>
+  </footer>
+
 </body>
 </html>
