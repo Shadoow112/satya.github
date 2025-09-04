@@ -22,7 +22,22 @@
   <main>
     <h2>Rekap Data LPK</h2>
     <p>Berikut adalah data Lembaga Pelatihan Kerja (LPK) yang telah terinput:</p>
-    <table id="dataTable" border="1" cellpadding="8" cellspacing="0"></table>
+    
+    <table id="lpkTable" border="1" cellpadding="8" cellspacing="0">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama LPK</th>
+          <th>Nomor Izin</th>
+          <th>Alamat</th>
+          <th>Kejuruan</th>
+          <th>Status Akreditasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data dari CSV akan dimuat di sini -->
+      </tbody>
+    </table>
   </main>
 
   <footer>
@@ -31,23 +46,26 @@
 
   <script>
     async function loadCSV() {
-      const response = await fetch('data/lpk.csv'); // path ke file CSV
+      const response = await fetch("data/lpk.csv"); // ambil file CSV dari folder /data
       const data = await response.text();
-      const rows = data.split("\n").map(row => row.split(","));
+      const rows = data.split("\n").slice(1); // skip header
+      const table = document.getElementById("lpkTable").getElementsByTagName("tbody")[0];
 
-      let table = "<tr>";
-      rows[0].forEach(header => { table += `<th>${header}</th>`; });
-      table += "</tr>";
+      rows.forEach((row, index) => {
+        if (row.trim() !== "") {
+          const cols = row.split(",");
+          const tr = document.createElement("tr");
 
-      for (let i = 1; i < rows.length; i++) {
-        table += "<tr>";
-        rows[i].forEach(cell => { table += `<td>${cell}</td>`; });
-        table += "</tr>";
-      }
+          cols.forEach(col => {
+            const td = document.createElement("td");
+            td.textContent = col.trim();
+            tr.appendChild(td);
+          });
 
-      document.getElementById("dataTable").innerHTML = table;
+          table.appendChild(tr);
+        }
+      });
     }
-
     loadCSV();
   </script>
 </body>
