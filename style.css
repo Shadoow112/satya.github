@@ -20,9 +20,9 @@ header {
   gap: 15px;
 }
 .logo {
-  height: 500px;
+  height: 1000px;
   flex-direction: column
-  margin-bottom: 10px
+  margin-bottom: 20px
   height: auto
 }
 
@@ -45,12 +45,7 @@ nav a:hover {
 }
 nav a.active {
   border-bottom: 2px solid yellow;
-}
-.logo {
-  height: 500px;
-  flex-direction: column
-  margin-bottom: 10px
-  height: auto
+
 }
 /* Slider */
 .slider {
@@ -78,12 +73,7 @@ nav a.active {
   70% { margin-left: -200%; }
   95% { margin-left: -200%; }
   100% { margin-left: 0; }
-}
-.logo {
-  height: 500px;
-  flex-direction: column
-  margin-bottom: 10px
-  height: auto
+
 }
 /* Konten */
 .container {
@@ -106,10 +96,4 @@ footer {
   color: white;
   padding: 15px;
   margin-top: 30px;
-}
-.logo {
-  height: 500px;
-  flex-direction: column
-  margin-bottom: 10px
-  height: auto
 }
