@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data LPK - Portal LPK Bali</title>
+  <title>Data LPK</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h2>Portal Data LPK Provinsi Bali</h2>
+    <h1>Portal Data LPK Provinsi Bali</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="lpk.html" class="active">Data LPK</a></li>
+        <li><a href="formulir.html">Formulir</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="lpk.html" class="active">Data LPK</a>
-    <a href="formulir.html">Formulir</a>
-    <a href="kontak.html">Kontak</a>
-  </nav>
-
-  <div class="container">
-    <h1>Data Lembaga Pelatihan Kerja</h1>
-    <table>
+  <main>
+    <h2>Rekapan Data Lembaga Pelatihan Kerja</h2>
+    <table id="lpkTable" border="1" cellpadding="5">
       <thead>
         <tr>
-          <th>No</th>
+          <th>Timestamp</th>
           <th>Nama LPK</th>
           <th>Nomor Izin</th>
           <th>Alamat</th>
@@ -31,29 +32,38 @@
           <th>Status Akreditasi</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>LPK Contoh Sejahtera</td>
-          <td>123/LPK/2025</td>
-          <td>Denpasar</td>
-          <td>Pariwisata</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>LPK Maju Bersama</td>
-          <td>456/LPK/2025</td>
-          <td>Badung</td>
-          <td>Tata Boga</td>
-          <td>B</td>
-        </tr>
-      </tbody>
+      <tbody></tbody>
     </table>
-  </div>
+  </main>
 
   <footer>
-    &copy; 2025 Dinas Tenaga Kerja Provinsi Bali
+    <p>&copy; 2025 Disnaker ESDM Provinsi Bali</p>
   </footer>
+
+  <script>
+    async function loadData() {
+      const url = "PASTE-LINK-CSV-DARI-GOOGLE-SHEETS";
+      const response = await fetch(url);
+      const data = await response.text();
+
+      const rows = data.split("\n").slice(1); // skip header
+      const tableBody = document.querySelector("#lpkTable tbody");
+
+      rows.forEach(row => {
+        const cols = row.split(",");
+        if (cols.length > 1) {
+          const tr = document.createElement("tr");
+          cols.forEach(col => {
+            const td = document.createElement("td");
+            td.textContent = col;
+            tr.appendChild(td);
+          });
+          tableBody.appendChild(tr);
+        }
+      });
+    }
+
+    loadData();
+  </script>
 </body>
 </html>
