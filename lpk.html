@@ -2,36 +2,80 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data LPK</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Tambahan style khusus tabel */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+</head>
+<body>
+  <header>
+    <h1>Portal Data LPK Provinsi Bali</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="lpk.html" class="active">Data LPK</a></li>
+        <li><a href="formulir.html">Formulir</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    table thead {
-      background: #0077b6;
-      color: #fff;
-    }
+  <main>
+    <h2>Rekap Data LPK</h2>
+    <p>Berikut adalah data Lembaga Pelatihan Kerja (LPK) yang telah terinput:</p>
 
-    table th, table td {
-      padding: 12px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
+    <table id="lpkTable" border="1" cellpadding="8" cellspacing="0">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama LPK</th>
+          <th>Nomor Izin</th>
+          <th>Alamat</th>
+          <th>Kejuruan</th>
+          <th>Status Akreditasi</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
 
-    table tbody tr:nth-child(even) {
-      background: #f9f9f9;
-    }
+  <footer>
+    <p>&copy; 2025 Disnaker ESDM Provinsi Bali</p>
+  </footer>
 
-    table tbody tr:hover {
-      background: #e3f2fd;
-    }
+  <script>
+    async function loadData() {
+      // 🔹 Link CSV (sesuaikan lokasi file di repo kamu)
+      const url = "data/lpk.csv";
 
-    h2 {
-      text-align: cent
+      const response = await fetch(url);
+      const data = await response.text();
+
+      const rows = data.split("\n").slice(1); // skip header
+      const tableBody = document.querySelector("#lpkTable tbody");
+      tableBody.innerHTML = "";
+
+      rows.forEach((row, index) => {
+        const cols = row.split(",");
+        if (cols.length > 1) {
+          const tr = document.createElement("tr");
+
+          // Tambah nomor urut
+          const tdNo = document.createElement("td");
+          tdNo.textContent = index + 1;
+          tr.appendChild(tdNo);
+
+          // Tambah data dari CSV
+          cols.forEach(col => {
+            const td = document.createElement("td");
+            td.textContent = col.trim();
+            tr.appendChild(td);
+          });
+
+          tableBody.appendChild(tr);
+        }
+      });
+    }
+    loadData();
+  </script>
+</body>
+</html>
