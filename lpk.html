@@ -22,20 +22,7 @@
   <main>
     <h2>Rekap Data LPK</h2>
     <p>Berikut adalah data Lembaga Pelatihan Kerja (LPK) yang telah terinput:</p>
-
-    <table id="lpkTable" border="1" cellpadding="8" cellspacing="0">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama LPK</th>
-          <th>Nomor Izin</th>
-          <th>Alamat</th>
-          <th>Kejuruan</th>
-          <th>Status Akreditasi</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <table id="dataTable" border="1" cellpadding="8" cellspacing="0"></table>
   </main>
 
   <footer>
@@ -43,38 +30,25 @@
   </footer>
 
   <script>
-    async function loadData() {
-      const url = "data/lpk.csv";
-
-      const response = await fetch(url);
+    async function loadCSV() {
+      const response = await fetch('data/lpk.csv'); // path ke file CSV
       const data = await response.text();
+      const rows = data.split("\n").map(row => row.split(","));
 
-      const rows = data.split("\n").slice(1); // skip header
-      const tableBody = document.querySelector("#lpkTable tbody");
-      tableBody.innerHTML = "";
+      let table = "<tr>";
+      rows[0].forEach(header => { table += `<th>${header}</th>`; });
+      table += "</tr>";
 
-      rows.forEach((row, index) => {
-        const cols = row.split(",");
-        if (cols.length > 1) {
-          const tr = document.createElement("tr");
+      for (let i = 1; i < rows.length; i++) {
+        table += "<tr>";
+        rows[i].forEach(cell => { table += `<td>${cell}</td>`; });
+        table += "</tr>";
+      }
 
-          // Tambah nomor urut
-          const tdNo = document.createElement("td");
-          tdNo.textContent = index + 1;
-          tr.appendChild(tdNo);
-
-          // Tambah data dari CSV
-          cols.forEach(col => {
-            const td = document.createElement("td");
-            td.textContent = col.trim();
-            tr.appendChild(td);
-          });
-
-          tableBody.appendChild(tr);
-        }
-      });
+      document.getElementById("dataTable").innerHTML = table;
     }
-    loadData();
+
+    loadCSV();
   </script>
 </body>
 </html>
