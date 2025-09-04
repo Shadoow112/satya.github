@@ -46,7 +46,12 @@ nav a:hover {
 nav a.active {
   border-bottom: 2px solid yellow;
 }
-
+.logo {
+  height: 500px;
+  flex-direction: column
+  margin-bottom: 10px
+  height: auto
+}
 /* Slider */
 .slider {
   width: 100%;
@@ -74,7 +79,12 @@ nav a.active {
   95% { margin-left: -200%; }
   100% { margin-left: 0; }
 }
-
+.logo {
+  height: 500px;
+  flex-direction: column
+  margin-bottom: 10px
+  height: auto
+}
 /* Konten */
 .container {
   max-width: 900px;
@@ -96,4 +106,10 @@ footer {
   color: white;
   padding: 15px;
   margin-top: 30px;
+}
+.logo {
+  height: 500px;
+  flex-direction: column
+  margin-bottom: 10px
+  height: auto
 }
