@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data LPK</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #004080;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -23,7 +43,7 @@
     <h2>Rekap Data LPK</h2>
     <p>Berikut adalah data Lembaga Pelatihan Kerja (LPK) yang telah terinput:</p>
     
-    <table id="lpkTable" border="1" cellpadding="8" cellspacing="0">
+    <table id="lpkTable">
       <thead>
         <tr>
           <th>No</th>
@@ -35,7 +55,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Data dari CSV akan dimuat di sini -->
+        <!-- Data CSV akan tampil di sini -->
       </tbody>
     </table>
   </main>
@@ -46,24 +66,22 @@
 
   <script>
     async function loadCSV() {
-      const response = await fetch("data/lpk.csv"); // ambil file CSV dari folder /data
-      const data = await response.text();
-      const rows = data.split("\n").slice(1); // skip header
-      const table = document.getElementById("lpkTable").getElementsByTagName("tbody")[0];
+      const response = await fetch("data/lpk.csv"); // pastikan path benar
+      const text = await response.text();
+      const rows = text.trim().split("\n").slice(1); // skip header
+      const tbody = document.querySelector("#lpkTable tbody");
 
-      rows.forEach((row, index) => {
-        if (row.trim() !== "") {
-          const cols = row.split(",");
-          const tr = document.createElement("tr");
+      rows.forEach((row) => {
+        const cols = row.split(",");
+        const tr = document.createElement("tr");
 
-          cols.forEach(col => {
-            const td = document.createElement("td");
-            td.textContent = col.trim();
-            tr.appendChild(td);
-          });
+        cols.forEach(col => {
+          const td = document.createElement("td");
+          td.textContent = col.trim();
+          tr.appendChild(td);
+        });
 
-          table.appendChild(tr);
-        }
+        tbody.appendChild(tr);
       });
     }
     loadCSV();
