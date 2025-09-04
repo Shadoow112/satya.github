@@ -2,84 +2,23 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data LPK - Portal Data LPK Bali</title>
-  <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f4f6f9; }
-    header { background:#003366; color:white; padding:15px 30px; display:flex; align-items:center; }
-    header img { height:60px; margin-right:20px; }
-    header h1 { margin:0; font-size:22px; }
-    nav { background:#0055a5; display:flex; justify-content:center; }
-    nav a { color:white; padding:14px 20px; text-decoration:none; font-weight:bold; }
-    nav a:hover { background:#003366; }
-    main { max-width:1200px; margin:auto; padding:30px; }
-    h2 { border-bottom:3px solid #0055a5; padding-bottom:5px; color:#003366; }
-    table { width:100%; border-collapse:collapse; background:white; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    th,td { border:1px solid #ddd; padding:10px; text-align:center; }
-    th { background:#0055a5; color:white; }
-    footer { background:#003366; color:white; text-align:center; padding:20px; margin-top:30px; }
-  </style>
+  <title>Data LPK - Portal LPK Bali</title>
 </head>
 <body>
-  <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Coat_of_arms_of_Bali.svg" alt="Logo">
-    <h1>Portal Data Lembaga Pelatihan Kerja Provinsi Bali</h1>
-  </header>
-
   <nav>
-    <a href="index.html">Beranda</a>
-    <a href="lpk.html">Data LPK</a>
-    <a href="formulir.html">Formulir</a>
+    <a href="index.html">Beranda</a> |
+    <a href="lpk.html">Data LPK</a> |
+    <a href="formulir.html">Formulir</a> |
     <a href="kontak.html">Kontak</a>
   </nav>
-
-  <main>
-    <h2>📊 Data LPK</h2>
-    <table id="tabel-lpk">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama LPK</th>
-          <th>Nomor Izin</th>
-          <th>Alamat</th>
-          <th>Kejuruan</th>
-          <th>Status Akreditasi</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Portal Data LPK Provinsi Bali</p>
-  </footer>
-
-  <script>
-    async function loadData() {
-      const url = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv"; // ganti link CSV publik
-      const response = await fetch(url);
-      const text = await response.text();
-      const rows = text.split("\n").map(r => r.split(","));
-
-      const tbody = document.querySelector("#tabel-lpk tbody");
-      tbody.innerHTML = "";
-
-      rows.slice(1).forEach(row => {
-        if (row[0]) {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row[0]}</td>
-            <td>${row[1]}</td>
-            <td>${row[2]}</td>
-            <td>${row[3]}</td>
-            <td>${row[4]}</td>
-            <td>${row[5]}</td>
-          `;
-          tbody.appendChild(tr);
-        }
-      });
-    }
-    loadData();
-  </script>
+  <h1>Data Lembaga Pelatihan Kerja</h1>
+  <table border="1">
+    <tr>
+      <th>No</th><th>Nama LPK</th><th>Nomor Izin</th><th>Alamat</th><th>Kejuruan</th><th>Status Akreditasi</th>
+    </tr>
+    <tr>
+      <td>1</td><td>Contoh LPK</td><td>123/IX/2025</td><td>Denpasar</td><td>Pariwisata</td><td>A</td>
+    </tr>
+  </table>
 </body>
 </html>
