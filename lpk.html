@@ -1,27 +1,37 @@
-<main>
-  <h2>Rekapan Data Lembaga Pelatihan Kerja</h2>
-  <p>Data berikut otomatis diperbarui setiap kali ada pengisian formulir.</p>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Data LPK</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tambahan style khusus tabel */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
 
-  <table id="lpkTable">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Nama LPK</th>
-        <th>Nomor Izin</th>
-        <th>Alamat</th>
-        <th>Kejuruan</th>
-        <th>Status Akreditasi</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</main>
+    table thead {
+      background: #0077b6;
+      color: #fff;
+    }
 
-<script>
-  async function loadData() {
-    // kalau sudah upload ke GitHub, pakai link RAW csv dari repo
-    // contoh: https://raw.githubusercontent.com/USERNAME/REPO/branch/path/file.csv
-    const url = "data/lpk.csv"; // sesuaikan path CSV di repositori GitHub kamu
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
 
-    const response = await fetch(url);
-    const data =
+    table tbody tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    table tbody tr:hover {
+      background: #e3f2fd;
+    }
+
+    h2 {
+      text-align: cent
