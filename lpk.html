@@ -1,90 +1,37 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data LPK</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background: #fff;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-    th {
-      background-color: #004080;
-      color: white;
-    }
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Portal Data LPK Provinsi Bali</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="lpk.html" class="active">Data LPK</a></li>
-        <li><a href="formulir.html">Formulir</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
+<h2>Rekap Data LPK</h2>
+<p>Berikut adalah data Lembaga Pelatihan Kerja (LPK) yang telah terinput:</p>
 
-  <main>
-    <h2>Rekap Data LPK</h2>
-    <p>Berikut adalah data Lembaga Pelatihan Kerja (LPK) yang telah terinput:</p>
-    
-    <table id="lpkTable">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama LPK</th>
-          <th>Nomor Izin</th>
-          <th>Alamat</th>
-          <th>Kejuruan</th>
-          <th>Status Akreditasi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Data CSV akan tampil di sini -->
-      </tbody>
-    </table>
-  </main>
+<table id="tabel-lpk" border="1" cellspacing="0" cellpadding="8">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama LPK</th>
+      <th>Nomor Izin</th>
+      <th>Alamat</th>
+      <th>Kejuruan</th>
+      <th>Status Akreditasi</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-  <footer>
-    <p>&copy; 2025 Disnaker ESDM Provinsi Bali</p>
-  </footer>
+<script>
+// https://github.com/Shadoow112/data.git
+fetch("data/lpk.csv")
+  .then(response => response.text())
+  .then(data => {
+    const rows = data.trim().split("\n").map(row => row.split(","));
+    const tbody = document.querySelector("#tabel-lpk tbody");
 
-  <script>
-    async function loadCSV() {
-      const response = await fetch("data/lpk.csv"); // pastikan path benar
-      const text = await response.text();
-      const rows = text.trim().split("\n").slice(1); // skip header
-      const tbody = document.querySelector("#lpkTable tbody");
-
-      rows.forEach((row) => {
-        const cols = row.split(",");
-        const tr = document.createElement("tr");
-
-        cols.forEach(col => {
-          const td = document.createElement("td");
-          td.textContent = col.trim();
-          tr.appendChild(td);
-        });
-
-        tbody.appendChild(tr);
+    // Lewati baris pertama (header)
+    rows.slice(1).forEach(row => {
+      let tr = document.createElement("tr");
+      row.forEach(cell => {
+        let td = document.createElement("td");
+        td.textContent = cell;
+        tr.appendChild(td);
       });
-    }
-    loadCSV();
-  </script>
-</body>
-</html>
+      tbody.appendChild(tr);
+    });
+  });
+</script>
