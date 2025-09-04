@@ -1,69 +1,27 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data LPK</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Portal Data LPK Provinsi Bali</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="lpk.html" class="active">Data LPK</a></li>
-        <li><a href="formulir.html">Formulir</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
+<main>
+  <h2>Rekapan Data Lembaga Pelatihan Kerja</h2>
+  <p>Data berikut otomatis diperbarui setiap kali ada pengisian formulir.</p>
 
-  <main>
-    <h2>Rekapan Data Lembaga Pelatihan Kerja</h2>
-    <table id="lpkTable" border="1" cellpadding="5">
-      <thead>
-        <tr>
-          <th>Timestamp</th>
-          <th>Nama LPK</th>
-          <th>Nomor Izin</th>
-          <th>Alamat</th>
-          <th>Kejuruan</th>
-          <th>Status Akreditasi</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </main>
+  <table id="lpkTable">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama LPK</th>
+        <th>Nomor Izin</th>
+        <th>Alamat</th>
+        <th>Kejuruan</th>
+        <th>Status Akreditasi</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
 
-  <footer>
-    <p>&copy; 2025 Disnaker ESDM Provinsi Bali</p>
-  </footer>
+<script>
+  async function loadData() {
+    // kalau sudah upload ke GitHub, pakai link RAW csv dari repo
+    // contoh: https://raw.githubusercontent.com/USERNAME/REPO/branch/path/file.csv
+    const url = "data/lpk.csv"; // sesuaikan path CSV di repositori GitHub kamu
 
-  <script>
-    async function loadData() {
-      const url = "PASTE-LINK-CSV-DARI-GOOGLE-SHEETS";
-      const response = await fetch(url);
-      const data = await response.text();
-
-      const rows = data.split("\n").slice(1); // skip header
-      const tableBody = document.querySelector("#lpkTable tbody");
-
-      rows.forEach(row => {
-        const cols = row.split(",");
-        if (cols.length > 1) {
-          const tr = document.createElement("tr");
-          cols.forEach(col => {
-            const td = document.createElement("td");
-            td.textContent = col;
-            tr.appendChild(td);
-          });
-          tableBody.appendChild(tr);
-        }
-      });
-    }
-
-    loadData();
-  </script>
-</body>
-</html>
+    const response = await fetch(url);
+    const data =
