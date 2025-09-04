@@ -3,160 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temu Rekap Administrasi Pelatihan LPK</title>
+  <title>Portal Data LPK Provinsi Bali</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9fafc;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #2c3e50, #2980b9);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    header p {
-      margin: 8px 0 0;
-      font-size: 16px;
-    }
-    nav {
-      background: #34495e;
-      display: flex;
-      justify-content: center;
-      padding: 10px;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      margin: 8px 15px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #f1c40f;
-    }
-    main {
-      padding: 30px;
-      max-width: 900px;
-      margin: auto;
-    }
-    section {
-      margin-bottom: 50px;
-    }
-    h2 {
-      color: #2c3e50;
-      border-left: 5px solid #2980b9;
-      padding-left: 10px;
-      margin-bottom: 15px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th {
-      background: #2980b9;
-      color: white;
-      padding: 12px;
-    }
-    td {
-      padding: 10px;
-      text-align: center;
-    }
-    a.button {
-      display: inline-block;
-      background: #2980b9;
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-top: 10px;
-      transition: background 0.3s;
-    }
-    a.button:hover {
-      background: #1f6391;
-    }
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-    }
+    body { margin:0; font-family: Arial, sans-serif; background:#f4f6f9; color:#333; }
+    header { background:#003366; color:white; padding:15px 30px; display:flex; align-items:center; }
+    header img { height:60px; margin-right:20px; }
+    header h1 { margin:0; font-size:22px; }
+    nav { background:#0055a5; display:flex; justify-content:center; }
+    nav a { color:white; padding:14px 20px; text-decoration:none; font-weight:bold; }
+    nav a:hover { background:#003366; }
+    .slider { width:100%; max-height:350px; overflow:hidden; position:relative; }
+    .slider img { width:100%; display:none; }
+    .slider img.active { display:block; }
+    main { max-width:1200px; margin:auto; padding:30px; }
+    section { margin-bottom:50px; }
+    h2 { border-bottom:3px solid #0055a5; padding-bottom:5px; color:#003366; }
+    table { width:100%; border-collapse:collapse; background:white; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    th,td { border:1px solid #ddd; padding:10px; text-align:center; }
+    th { background:#0055a5; color:white; }
+    a.button { display:inline-block; background:#0055a5; color:white; padding:12px 20px; border-radius:6px; text-decoration:none; }
+    a.button:hover { background:#003366; }
+    footer { background:#003366; color:white; text-align:center; padding:20px; }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>TERAMPIL</h1>
-    <p>Rekapitulasi dan kelengkapan data LPK secara digital</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Coat_of_arms_of_Bali.svg" alt="Logo">
+    <h1>Portal Data Lembaga Pelatihan Kerja Provinsi Bali</h1>
   </header>
 
   <nav>
     <a href="#beranda">Beranda</a>
-    <a href="#lpk">LPK</a>
-    <a href="#formulir">Formulir Pengisian Data</a>
+    <a href="#lpk">Data LPK</a>
+    <a href="#formulir">Formulir</a>
     <a href="#kontak">Kontak</a>
   </nav>
 
+  <div class="slider">
+    <img src="https://source.unsplash.com/1600x500/?bali,office" class="active">
+    <img src="https://source.unsplash.com/1600x500/?training,education">
+    <img src="https://source.unsplash.com/1600x500/?government,meeting">
+  </div>
+
   <main>
-    <!-- Beranda -->
     <section id="beranda">
       <h2>🏠 Beranda</h2>
-      <p>Pada website ini Temu Rekap Administrasi Pelatihan LPK akan digunakan untuk merekap data <b>Lembaga Pelatihan Kerja (LPK)</b> 
+      <p>Pada website ini akan digunakan untuk merekap data <b>Lembaga Pelatihan Kerja (LPK)</b> 
       yang ada di Provinsi Bali. Sistem ini bertujuan untuk mempermudah pemantauan, pembaruan, 
       serta publikasi informasi terkait LPK secara transparan dan akurat.</p>
     </section>
 
-    <!-- Data LPK -->
     <section id="lpk">
       <h2>📊 Data LPK</h2>
-      <p>Berikut adalah rekapan data Lembaga Pelatihan Kerja di Provinsi Bali:</p>
-      <table>
-        <tr>
-          <th>No</th>
-          <th>Nama LPK</th>
-          <th>Nomor Izin</th>
-          <th>Bidang Pelatihan</th>
-          <th>Status Akreditasi</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>LPK Marcopolo Bali International</td>
-          <td>123/2025</td>
-          <td>Pariwisata</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>LPK Venus One Tourism Academy</td>
-          <td>456/2025</td>
-          <td>Perhotelan</td>
-          <td>B</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>LPK Cendekia Bali</td>
-          <td>789/2025</td>
-          <td>TIK</td>
-          <td>Proses</td>
-        </tr>
+      <table id="tabel-lpk">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama LPK</th>
+            <th>Nomor Izin</th>
+            <th>Alamat</th>
+            <th>Kejuruan</th>
+            <th>Status Akreditasi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
       </table>
     </section>
 
-    <!-- Formulir -->
     <section id="formulir">
       <h2>📝 Formulir Pengisian Data</h2>
       <p>Untuk melengkapi atau memperbarui data LPK, silakan isi formulir berikut:</p>
@@ -165,7 +78,6 @@
       </a>
     </section>
 
-    <!-- Kontak -->
     <section id="kontak">
       <h2>📌 Kontak</h2>
       <p><b>Email:</b> disnakeresdm@baliprov.go.id</p>
@@ -178,5 +90,44 @@
     <p>&copy; 2025 Portal Data LPK Provinsi Bali</p>
   </footer>
 
+  <script>
+    // Slider Otomatis
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slider img");
+    function showSlides() {
+      slides.forEach((s, i) => s.classList.remove("active"));
+      slides[slideIndex].classList.add("active");
+      slideIndex = (slideIndex + 1) % slides.length;
+      setTimeout(showSlides, 4000);
+    }
+    showSlides();
+
+    // Load Data LPK dari Google Sheet (CSV publik)
+    async function loadData() {
+      const url = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv"; // GANTI dengan link CSV publik
+      const response = await fetch(url);
+      const text = await response.text();
+      const rows = text.split("\n").map(r => r.split(","));
+
+      const tbody = document.querySelector("#tabel-lpk tbody");
+      tbody.innerHTML = "";
+
+      rows.slice(1).forEach(row => {
+        if (row[0]) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${row[0]}</td>
+            <td>${row[1]}</td>
+            <td>${row[2]}</td>
+            <td>${row[3]}</td>
+            <td>${row[4]}</td>
+            <td>${row[5]}</td>
+          `;
+          tbody.appendChild(tr);
+        }
+      });
+    }
+    loadData();
+  </script>
 </body>
 </html>
