@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data LPK - Portal LPK Bali</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Coat_of_arms_of_Bali.svg" alt="Logo">
-    <h1>Portal Data Lembaga Pelatihan Kerja Provinsi Bali</h1>
+    <h2>Portal Data LPK Provinsi Bali</h2>
   </header>
 
   <nav>
@@ -19,10 +18,9 @@
     <a href="kontak.html">Kontak</a>
   </nav>
 
-  <main>
-    <h2>📊 Data LPK</h2>
-    <p>Berikut adalah data Lembaga Pelatihan Kerja di Provinsi Bali:</p>
-    <table id="tabel-lpk">
+  <div class="container">
+    <h1>Data Lembaga Pelatihan Kerja</h1>
+    <table>
       <thead>
         <tr>
           <th>No</th>
@@ -33,40 +31,29 @@
           <th>Status Akreditasi</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>LPK Contoh Sejahtera</td>
+          <td>123/LPK/2025</td>
+          <td>Denpasar</td>
+          <td>Pariwisata</td>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>LPK Maju Bersama</td>
+          <td>456/LPK/2025</td>
+          <td>Badung</td>
+          <td>Tata Boga</td>
+          <td>B</td>
+        </tr>
+      </tbody>
     </table>
-  </main>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Portal Data LPK Provinsi Bali</p>
+    &copy; 2025 Dinas Tenaga Kerja Provinsi Bali
   </footer>
-
-  <script>
-    async function loadData() {
-      const url = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv"; 
-      const response = await fetch(url);
-      const text = await response.text();
-      const rows = text.split("\n").map(r => r.split(","));
-
-      const tbody = document.querySelector("#tabel-lpk tbody");
-      tbody.innerHTML = "";
-
-      rows.slice(1).forEach(row => {
-        if (row[0]) {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row[0]}</td>
-            <td>${row[1]}</td>
-            <td>${row[2]}</td>
-            <td>${row[3]}</td>
-            <td>${row[4]}</td>
-            <td>${row[5]}</td>
-          `;
-          tbody.appendChild(tr);
-        }
-      });
-    }
-    loadData();
-  </script>
 </body>
 </html>
