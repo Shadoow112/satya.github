@@ -21,6 +21,9 @@ header {
 }
 .logo {
   height: 500px;
+  flex-direction: column
+  margin-bottom: 10px
+  height: auto
 }
 
 /* Navigasi */
