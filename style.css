@@ -1,21 +1,96 @@
-/* Background dengan gradasi + gambar */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #eef2f3, #d9e4f5), 
-              url('https://source.unsplash.com/1600x900/?bali,landscape');
-  background-size: cover;
-  background-attachment: fixed;
+  background: #f4f6f9;
   color: #333;
 }
 
-/* Supaya kontainer tetap jelas di atas background */
+/* Header */
+header {
+  background: #0055a5;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.logo {
+  height: 60px;
+}
+
+/* Navigasi */
+nav {
+  background: #003f7d;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+nav a:hover {
+  color: yellow;
+}
+nav a.active {
+  border-bottom: 2px solid yellow;
+}
+
+/* Slider */
+.slider {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+.slides {
+  display: flex;
+  width: 300%;
+  animation: slide 12s infinite;
+}
+.slides img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+@keyframes slide {
+  0% { margin-left: 0; }
+  25% { margin-left: 0; }
+  35% { margin-left: -100%; }
+  60% { margin-left: -100%; }
+  70% { margin-left: -200%; }
+  95% { margin-left: -200%; }
+  100% { margin-left: 0; }
+}
+
+/* Konten */
 .container {
   max-width: 900px;
   margin: 30px auto;
-  background: rgba(255, 255, 255, 0.9); /* transparan sedikit */
+  background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+h2 {
+  text-align: center;
+  color: #0055a5;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #0055a5;
+  color: white;
+  padding: 15px;
+  margin-top: 30px;
 }
