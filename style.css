@@ -121,3 +121,26 @@ footer {
   padding: 15px;
   margin-top: 30px;
 }
+
+.komite-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.komite-grid img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+}
+
+.komite-grid p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
