@@ -3,98 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data LPK - Portal LPK Bali</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Data LPK Interaktif - Portal LPK Bali</title>
 
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  
   <style>
-    /* Style untuk tabel Data LPK */
-    #tabel-lpk {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px 20px;
     }
 
-    #tabel-lpk th, #tabel-lpk td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
+    header {
+      margin-bottom: 20px;
     }
 
-    #tabel-lpk th {
+    header h1 {
+      font-size: 1.8em;
+      color: #0055a5;
+    }
+
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #0055a5;
+      font-weight: bold;
+    }
+
+    nav a.active {
+      text-decoration: underline;
+    }
+
+    table.dataTable thead th {
       background-color: #0055a5;
       color: white;
-    }
-
-    #tabel-lpk tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-
-    #tabel-lpk tr:hover {
-      background-color: #f1f1f1;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="logo prov bali (1).png" alt="Logo Bali" class="logo">
-      <h1>Portal Data Lembaga Pelatihan Kerja Provinsi Bali</h1>
-    </div>
-  </header>
 
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="lpk.html" class="active">Data LPK</a>
-    <a href="formulir.html">Formulir</a>
-    <a href="kontak.html">Kontak</a>
-  </nav>
+<header>
+  <h1>Portal Data Lembaga Pelatihan Kerja Provinsi Bali</h1>
+</header>
 
-  <main>
-    <h2>📊 Data LPK</h2>
-    <p>Berikut adalah data Lembaga Pelatihan Kerja di Provinsi Bali:</p>
-    
-    <table id="tabel-lpk">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama LPK</th>
-          <th>Nomor Izin</th>
-          <th>Alamat</th>
-          <th>Kejuruan</th>
-          <th>Status Akreditasi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>LPK Bali Maju</td>
-          <td>123/2025</td>
-          <td>Denpasar</td>
-          <td>IT</td>
-          <td>Terakreditasi</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>LPK Cendekia</td>
-          <td>456/2025</td>
-          <td>Badung</td>
-          <td>Pariwisata</td>
-          <td>Belum</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>LPK Nusantara</td>
-          <td>789/2025</td>
-          <td>Gianyar</td>
-          <td>Bahasa Inggris</td>
-          <td>Terakreditasi</td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="lpk.html" class="active">Data LPK</a>
+  <a href="formulir.html">Formulir</a>
+  <a href="kontak.html">Kontak</a>
+</nav>
 
-  <footer>
-    <p>&copy; 2025 Portal Data LPK Provinsi Bali</p>
-  </footer>
+<main>
+  <h2>📊 Data LPK Interaktif</h2>
+  <p>Data Lembaga Pelatihan Kerja di Provinsi Bali:</p>
+
+  <table id="tabel-lpk" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama LPK</th>
+        <th>Nomor Izin</th>
+        <th>Alamat</th>
+        <th>Kejuruan</th>
+        <th>Status Akreditasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <data/Data LPK 1.csv>
+    </tbody>
+  </table>
+</main>
+
+<footer>
+  <p>&copy; 2025 Portal Data LPK Provinsi Bali</p>
+</footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<!-- PapaParse -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+<script>
+  const csvPath = 'data/Data%20LPK%201.csv'; // Pastikan path sesuai
+
+  const tbody = $('#tabel-lpk tbody');
+  tbody.html(""); // kosongkan tbody
+
+  Papa.parse(csvPath, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      results.data.forEach((row, index) => {
+        if(row['Nama LPK']) {
+          tbody.append(`
+            <tr>
+              <td>${index + 1}</td>
+              <td>${row['Nama LPK']}</td>
+              <td>${row['Nomor Izin']}</td>
+              <td>${row['Alamat']}</td>
+              <td>${row['Kejuruan']}</td>
+              <td>${row['Status Akreditasi']}</td>
+            </tr>
+          `);
+        }
+      });
+
+      // Inisialisasi DataTables setelah data dimuat
+      $('#tabel-lpk').DataTable({
+        pageLength: 10,
+        lengthChange: false,
+        language: {
+          search: "Cari:",
+          paginate: {
+            previous: "Sebelumnya",
+            next: "Berikutnya"
+          },
+          emptyTable: "Tidak ada data tersedia"
+        }
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
