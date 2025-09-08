@@ -38,6 +38,20 @@
       background-color: #0055a5;
       color: white;
     }
+
+    .filter-container {
+      margin-bottom: 15px;
+    }
+
+    .filter-container label {
+      margin-right: 5px;
+      font-weight: bold;
+    }
+
+    .filter-container select {
+      margin-right: 20px;
+      padding: 5px;
+    }
   </style>
 </head>
 <body>
@@ -56,6 +70,14 @@
 <main>
   <h2>📊 Data LPK Interaktif</h2>
   <p>Data Lembaga Pelatihan Kerja di Provinsi Bali:</p>
+
+  <!-- Filter Kota/Kabupaten -->
+  <div class="filter-container">
+    <label for="filter-kabupaten">Filter Kota/Kabupaten:</label>
+    <select id="filter-kabupaten">
+      <option value="">Semua</option>
+    </select>
+  </div>
 
   <table id="tabel-lpk" class="display" style="width:100%">
     <thead>
@@ -90,13 +112,14 @@
   const csvPath = 'data/data lpk github (1).csv'; // Pastikan file CSV ada di folder data/
   const tbody = $('#tabel-lpk tbody');
 
-  // Kosongkan tbody sebelum diisi
-  tbody.html("");
+  tbody.html(""); // Kosongkan tbody
 
   Papa.parse(csvPath, {
     download: true,
     header: true,
     complete: function(results) {
+      const kabupatenSet = new Set();
+
       results.data.forEach((row, index) => {
         if(row['Nama LPK']) {
           tbody.append(`
@@ -110,11 +133,18 @@
               <td>${row['Status Akreditasi']}</td>
             </tr>
           `);
+
+          if(row['Kota/Kabupaten']) kabupatenSet.add(row['Kota/Kabupaten']);
         }
       });
 
-      // Inisialisasi DataTables setelah data dimuat
-      $('#tabel-lpk').DataTable({
+      // Isi dropdown Kota/Kabupaten
+      kabupatenSet.forEach(k => {
+        $('#filter-kabupaten').append(`<option value="${k}">${k}</option>`);
+      });
+
+      // Inisialisasi DataTables
+      const table = $('#tabel-lpk').DataTable({
         pageLength: 10,
         lengthChange: false,
         language: {
@@ -126,10 +156,15 @@
           emptyTable: "Tidak ada data tersedia"
         }
       });
+
+      // Filter Kota/Kabupaten
+      $('#filter-kabupaten').on('change', function() {
+        table.column(2).search(this.value).draw();
+      });
     },
     error: function(err) {
       console.error("Gagal memuat CSV:", err);
-      tbody.append('<tr><td colspan="6">Gagal memuat data CSV.</td></tr>');
+      tbody.append('<tr><td colspan="7">Gagal memuat data CSV.</td></tr>');
     }
   });
 </script>
