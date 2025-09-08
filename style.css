@@ -10,22 +10,44 @@ body {
 header {
   background: #0055a5;
   color: white;
-  padding: 30px 15px;
+  padding: 20px;
+}
+
+/* Kontainer logo + judul */
+.logo-container {
+  display: flex;
+  flex-direction: column;  /* default: logo di atas judul (HP) */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   text-align: center;
 }
 
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
+/* Logo */
+.logo {
+  max-height: 120px;   /* tinggi maksimal logo */
+  height: auto;
+  width: auto;
+  object-fit: contain; /* jaga proporsi */
 }
 
-.logo {
-  width: 200px;
-  max-width: 80%;
-  height: auto;
+/* Judul */
+.logo-container h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* 🔹 Layout desktop */
+@media (min-width: 768px) {
+  .logo-container {
+    flex-direction: row;   /* logo kiri, teks kanan */
+    text-align: left;
+  }
+
+  .logo-container h1 {
+    margin-left: 20px;
+    font-size: 2rem;
+  }
 }
 
 /* Navigasi */
