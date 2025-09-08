@@ -68,9 +68,7 @@
         <th>Status Akreditasi</th>
       </tr>
     </thead>
-    <tbody>
-      <data/data lpk github.csv>
-    </tbody>
+    <tbody></tbody>
   </table>
 </main>
 
@@ -86,15 +84,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
 <script>
-  const csvPath = 'data/Data%20LPK%201.csv'; // Pastikan path sesuai
+  
+  const csvPath = 'data lpk github.csv';
 
   const tbody = $('#tabel-lpk tbody');
-  tbody.html(""); // kosongkan tbody
 
   Papa.parse(csvPath, {
     download: true,
     header: true,
+    skipEmptyLines: true,
     complete: function(results) {
+      console.log("Data CSV:", results.data); // Debug
+
       results.data.forEach((row, index) => {
         if(row['Nama LPK']) {
           tbody.append(`
@@ -110,19 +111,19 @@
         }
       });
 
-      // Inisialisasi DataTables setelah data dimuat
       $('#tabel-lpk').DataTable({
         pageLength: 10,
         lengthChange: false,
         language: {
           search: "Cari:",
-          paginate: {
-            previous: "Sebelumnya",
-            next: "Berikutnya"
-          },
+          paginate: { previous: "Sebelumnya", next: "Berikutnya" },
           emptyTable: "Tidak ada data tersedia"
         }
       });
+    },
+    error: function(err) {
+      console.error("Gagal memuat CSV:", err);
+      tbody.append('<tr><td colspan="6">Gagal memuat data CSV</td></tr>');
     }
   });
 </script>
