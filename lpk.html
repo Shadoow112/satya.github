@@ -62,6 +62,7 @@
       <tr>
         <th>No</th>
         <th>Nama LPK</th>
+        <th>Kota/Kabupaten</th>
         <th>Nomor Izin</th>
         <th>Alamat</th>
         <th>Kejuruan</th>
@@ -86,7 +87,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
 <script>
-  const csvPath = 'data/data lpk github.csv'; // Pastikan file CSV ada di folder data/
+  const csvPath = 'data/data lpk github (1).csv'; // Pastikan file CSV ada di folder data/
   const tbody = $('#tabel-lpk tbody');
 
   // Kosongkan tbody sebelum diisi
@@ -102,6 +103,7 @@
             <tr>
               <td>${index + 1}</td>
               <td>${row['Nama LPK']}</td>
+              <td>${row['Kota/Kabupaten']}</td>
               <td>${row['Nomor Izin']}</td>
               <td>${row['Alamat']}</td>
               <td>${row['Kejuruan']}</td>
